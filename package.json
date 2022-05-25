@@ -1,0 +1,31 @@
+{
+  "name": "moat",
+  "version": "1.0.0",
+  "description": "A custom rental property management solution, which allows a property manager to create a platform for their tenants to communicate upwards. A landlord is able to establish their buildings and provide tenants with access to just the building or property they are a part of. The tenant is able to create an account to begin posting maintenance issues, ratings, and communicate with the landlord.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/utorteam11/MOAT.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/utorteam11/MOAT/issues"
+  },
+  "homepage": "https://github.com/utorteam11/MOAT#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "connect-session-sequelize": "^7.1.3",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "express-handlebars": "^6.0.6",
+    "express-session": "^1.17.3",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.20.0"
+  }
+}
