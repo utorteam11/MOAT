@@ -1,9 +1,10 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
+const bcrypt = require('bcrypt');
 
 class Tenant extends Model {};
 
-Landlord.init(
+Tenant.init(
     {
         id: {
             type: DataTypes.INTEGER,

@@ -59,3 +59,5 @@ Landlord.hasMany(Issue, {
 Issue.belongsTo(Landlord, {
     foreignKey: 'landlord_id'
 })
+
+module.exports = { Landlord, Tenant , RentalUnit, Issue}

@@ -31,7 +31,7 @@ Issue.init(
                 key: 'id'
             }
         },
-        rental_unit: {
+        rental_id: {
             type: DataTypes.INTEGER,
             references: {
                 model: 'rental_unit',
