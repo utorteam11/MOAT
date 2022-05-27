@@ -14,4 +14,8 @@ router.get('/signup', (req, res) => {
     })
 });
 
+router.get('/tenantform', (req, res) => {
+    res.render('tenantform')
+});
+
 module.exports = router;

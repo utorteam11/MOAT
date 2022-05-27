@@ -8,10 +8,12 @@ async function signUpFormHandler(event) {
     const password = document.querySelector("input[id='password-login'").value.trim();
     const type = document.querySelector('input[name="resident-type"]:checked').value;
 
+
     if(first_name && last_name && email && password && type) {
         switch(type) {
             case 'tenant':
-                console.log('tenant');
+                const tenant_unit = document.querySelector('input[id="tenant-unit"]').value;
+                // fetch request for tenant
                 break;
             case 'landlord':
                 const response = await fetch('/api/landlords', {
@@ -28,7 +30,7 @@ async function signUpFormHandler(event) {
                 })
 
                 if(response.ok) {
-                    document.location.replace('/properties')
+                    document.location.replace('/dashboard')
                 } else {
                     alert(response.statusText);
                 }
@@ -38,5 +40,32 @@ async function signUpFormHandler(event) {
     }
 }
 
+const FormStuff = {
+  
+    init: function() {
+      this.applyConditionalRequired();
+      this.bindUIActions();
+    },
+    
+    bindUIActions: function() {
+      $("input[type='radio']").on("change", this.applyConditionalRequired);
+    },
+    
+    applyConditionalRequired: function() {
+      
+      $(".require-if-active").each(function() {
+        var el = $(this);
+        if ($(el.data("require-pair")).is(":checked")) {
+          el.prop("required", true);
+        } else {
+          el.prop("required", false);
+        }
+      });
+      
+    }
+    
+};
+  
+FormStuff.init();
 
 document.querySelector('.signup').addEventListener('submit', signUpFormHandler);

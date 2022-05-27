@@ -23,11 +23,17 @@
         <label type="radio" for="landlord">Landlord</label><br>
         <input type="radio" id="tenant" name="resident-type" value="tenant">
         <label type="radio" for="tenant">Tenant</label><br>
+        <div class="reveal-if-active">
+            <label for="tenant-unit">Please enter your Unit # from your landlord:</label>
+            <input class=".require-if-active" type="text" id="tenant-unit" name="tenant-unit" data-require-pair="#tenant">
+        </div>
     </div>
+
     <div class="big-form">
         <button type="submit">Continue</button>
     </div>
 </form>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="/javascript/sign-up.js"></script>
