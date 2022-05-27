@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Property, Landlord, Unit, Issue, Comments } = require('../../models');
+const { Property, Landlord, Unit, Issue, Comments, Tenant } = require('../../models');
 const sequelize = require('../../config/connection')
 
 // get all propertys
@@ -42,6 +42,35 @@ router.get('/:id/', (req, res) => {
             where: {
                 id: req.params.id
             },
+
+            include: [
+                {
+                    model: Landlord,
+                    attributes: { exclude: ["password"]},
+                },
+
+                {
+                    model: Unit, 
+                    attributes: ['id', 'unit_number', 'property_id', 'rent', 'rent_due'],
+                    include: [
+                        {
+                            model: Issue,
+                            attributes: ['id', 'issue_title', 'issue_text', 'status', 'unit_id'],
+                            include: [
+                                {
+                                    model: Comments,
+                                    attributes: ['id', 'comment_text', 'issue_id']
+                                }
+                            ]
+                        },
+                        {
+                            model: Tenant,
+                            attributes: ['id', 'first_name', 'last_name', 'email', 'unit_id']
+                        }
+                    ]
+                }
+            ]
+
         }
     )
     .then(propertyData => {
