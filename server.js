@@ -4,6 +4,8 @@ const routes = require('./controllers');
 const sequelize = require('./config/connection');
 
 // pending handlebars and sessions initialization
+const exphbs = require('express-handlebars');
+const hbs = exphbs.create({});
 
 // initialize express
 const app = express();
@@ -15,6 +17,10 @@ app.use(express.urlencoded({ extended: true }));
 
 // set static folder for front end
 app.use(express.static(path.join(__dirname, 'public')));
+
+// set handlebars as template engine
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
 
 app.use(routes);
 
