@@ -1,0 +1,176 @@
+:root {
+    --primary-color: #3d77ff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    font-family: 'Manrope', sans-serif;
+    color: #000000;
+}
+
+.wrapper {
+    width: 100%;
+    min-height: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1%;
+}
+
+a {
+    text-decoration: none;
+    color: #102640;
+    font-weight: bold;
+    transition: color .3s;
+}
+
+a:hover {
+    color: var(--primary-color)
+}
+
+nav a {
+    margin: 0 5px;
+}
+
+button {
+    background-color: #011936;
+    border: 0;
+    width: 100%;
+    padding: 1%;
+    font-weight: bold;
+    transition: background-color .1s;
+    cursor: pointer;
+    border-radius: 5px;
+    color: white;
+    min-height: 40px;
+    margin-top: 1%;
+}
+
+button:hover {
+    background-color: var(--primary-color);
+}
+.btn-no-style {
+    text-decoration: none;
+    transition: color .3s;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 100%;
+    font-weight: bold;
+    color: #000000;
+}
+  
+.btn-no-style:hover {
+    background: none;
+    color: var(--primary-color);
+}
+
+nav button {
+    margin: 0 4px;
+    padding: 0;
+    border: 0;
+    width: 0%;
+    font-family: 'Manrope', sans-serif;
+}
+
+main {
+    flex: 1;
+    padding: 2% 4%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+textarea, input {
+    padding: 2%;
+    width: 100%;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+textarea {
+    min-width: 40%;
+    min-height: 100px;
+}
+  
+div > form > div {
+    margin-bottom: 2%;
+    font-weight: bold;
+}
+  
+form label {
+    margin-bottom: 0.5%;
+    display: block;
+}
+
+form label:hover {
+    color: var(--primary-color);
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+}
+
+.login p {
+    padding-bottom: 2%;
+    border-bottom: 1px dotted #000000;
+}
+
+.signup {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.small-form {
+    flex: 1 40%;
+    margin-right: 2%;
+}
+.big-form {
+    flex: 2 100%;
+    margin-right: 2%;
+}
+
+.small-form input, .big-form input {
+    height: 40px;
+}
+
+.radio {
+    display: flex;
+    justify-content: center;
+}
+
+.signup input[type="radio"] {
+    opacity: 0.01;
+    z-index: 100;
+    display: none;
+  }
+
+.radio label {
+    padding: 5px;
+    border: 1px solid #CCC;
+    cursor: pointer;
+    z-index: 90;
+    margin: 0 2%;
+}
+
+.radio input[type="radio"]:checked + label {
+    box-shadow: 0 0 0 3px var(--primary-color);
+    color:var(--primary-color);
+}
