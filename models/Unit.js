@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Issue extends Model {};
+class Unit extends Model {};
 
-Issue.init(
+Unit.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -11,35 +11,35 @@ Issue.init(
             allowNull: false,
             autoIncrement: true
         },
-        issue_title: {
-            type: DataTypes.STRING,
+        unit_number: {
+            type: DataTypes.INTEGER,
             allowNull: false
         },
-        issue_text: {
-            type: DataTypes.TEXT,
-            allowNull: false
-        },
-        status: {
-            type: DataTypes.STRING,
-            defaultValue: 'Open',
-            allowNull: false
-        },
-
-        unit_id: {
+        property_id: {
             type: DataTypes.INTEGER,
             references: {
-                model: 'unit',
+                model: 'property',
                 key: 'id'
             }
+        },
+        rent: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        rent_due: {
+            type: DataTypes.DATE,
+            allowNull: false
         }
+
     },
     {
         // configurations for table
         sequelize,
+        timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'issue'
+        modelName: 'unit'
     }
 );
 
-module.exports = Issue;
+module.exports = Unit;

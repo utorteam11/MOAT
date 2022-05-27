@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Issue extends Model {};
+class Property extends Model {};
 
-Issue.init(
+Property.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -11,35 +11,26 @@ Issue.init(
             allowNull: false,
             autoIncrement: true
         },
-        issue_title: {
+        address: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        issue_text: {
-            type: DataTypes.TEXT,
-            allowNull: false
-        },
-        status: {
-            type: DataTypes.STRING,
-            defaultValue: 'Open',
-            allowNull: false
-        },
-
-        unit_id: {
+        landlord_id: {
             type: DataTypes.INTEGER,
             references: {
-                model: 'unit',
+                model: 'landlord',
                 key: 'id'
             }
-        }
+        },
     },
     {
         // configurations for table
         sequelize,
+        timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'issue'
+        modelName: 'property'
     }
 );
 
-module.exports = Issue;
+module.exports = Property;

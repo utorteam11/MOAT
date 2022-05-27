@@ -1,63 +1,56 @@
-const Landlord = require('./Landlord');
-const Tenant = require('./Tenant');
-const RentalUnit = require('./RentalUnit');
-const Issue = require('./Issue');
-
+const Landlord = require("./Landlord");
+const Tenant = require("./Tenant");
+const Property = require("./Property");
+const Issue = require("./Issue");
+const Unit = require("./Unit");
+const Comments = require("./Comments");
 
 // insert model associations
 
 // landlord tenant relationship
-Landlord.hasMany(Tenant, {
-    foreignKey: 'landlord_id'
+Landlord.hasMany(Property, {
+  foreignKey: "landlord_id",
 });
 
-Tenant.belongsTo(Landlord, {
-    foreignKey: 'landlord_id'
+Property.belongsTo(Landlord, {
+  foreignKey: "landlord_id",
 });
-
 
 // landlord rental relationship
-Landlord.hasMany(RentalUnit, {
-    foreignKey: 'landlord_id'
+Property.hasMany(Unit, {
+  foreignKey: "property_id",
 });
 
-RentalUnit.belongsTo(Landlord, {
-    foreignKey: 'landlord_id'
+Unit.belongsTo(Property, {
+  foreignKey: "property_id",
 });
 
 // tenant rental relationship
-RentalUnit.hasMany(Tenant, {
-    foreignKey: 'rental_id'
+Unit.hasMany(Tenant, {
+  foreignKey: "unit_id",
 });
 
-Tenant.belongsTo(RentalUnit, {
-    foreignKey: 'rental_id'
+Tenant.belongsTo(Unit, {
+  foreignKey: "unit_id",
 });
 
 // issue relationships
 
-Tenant.hasMany(Issue, {
-    foreignKey: 'tenant_id'
+Unit.hasMany(Issue, {
+  foreignKey: "unit_id",
 });
 
-Issue.belongsTo(Tenant, {
-    foreignKey: 'tenant_id'
+Issue.belongsTo(Unit, {
+  foreignKey: "unit_id",
 });
 
-RentalUnit.hasMany(Issue, {
-    foreignKey: 'rental_id'
+Comments.belongsTo(Issue, {
+  foreignKey: "issue_id",
 });
 
-Issue.belongsTo(RentalUnit, {
-    foreignKey: 'rental_id'
+Issue.hasMany(Comments, {
+  foreignKey: "issue_id",
 });
 
-Landlord.hasMany(Issue, {
-    foreignKey: 'landlord_id'
-});
 
-Issue.belongsTo(Landlord, {
-    foreignKey: 'landlord_id'
-})
-
-module.exports = { Landlord, Tenant , RentalUnit, Issue}
+module.exports = { Landlord, Tenant, Property, Issue, Comments, Unit };

@@ -37,19 +37,11 @@ Tenant.init(
                 len: [8]
             }
         },
-        landlord_id: {
+        unit_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: 'landlord',
-                key: 'id'
-            }
-        },
-        rental_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            references: {
-                model: 'rental_unit',
+                model: 'unit',
                 key: 'id'
             }
         }

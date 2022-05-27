@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class RentalUnit extends Model {};
+class Comments extends Model {};
 
-RentalUnit.init(
+Comments.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -11,35 +11,25 @@ RentalUnit.init(
             allowNull: false,
             autoIncrement: true
         },
-        address: {
-            type: DataTypes.STRING,
+        comment_text: {
+            type: DataTypes.TEXT,
             allowNull: false
         },
-        landlord_id: {
+        issue_id: {
             type: DataTypes.INTEGER,
             references: {
-                model: 'landlord',
+                model: 'issue',
                 key: 'id'
             }
-        },
-        rent: {
-            type: DataTypes.INTEGER,
-            allowNull: false
-        },
-        rent_due: {
-            type: DataTypes.DATE,
-            allowNull: false
         }
-
     },
     {
         // configurations for table
         sequelize,
-        timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'rental_unit'
+        modelName: 'comments'
     }
 );
 
-module.exports = RentalUnit;
+module.exports = Comments;
