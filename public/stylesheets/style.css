@@ -181,6 +181,7 @@ form label:hover {
     max-height: 0;
     overflow: hidden;
     flex: 1 100%;
+    margin-top: 2%;
 }
 
 .reveal-if-active label {
