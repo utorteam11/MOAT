@@ -1,14 +1,17 @@
 const router = require('express').Router();
-const { Landlord } = require('../../models');
+const { Landlord, Property } = require('../../models');
 const sequelize = require('../../config/connection')
 
 // get all landlords
 router.get('/', (req, res) => {
-    Landlord.findAll(
-        {
+    console.log(req.query);
+    if(req.query.landlord == 1) {
+        console.log('requesting landlords');
+    }
+
+    Landlord.findAll({
             attributes: { exclude: ['password'] }
-        }
-    )
+        })
     .then(landlordData => res.json(landlordData))
     .catch(err => {
         console.log(err);
