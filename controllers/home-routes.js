@@ -1,4 +1,4 @@
-const router = require('express').Router();
+const router = require("express").Router();
 
 router.get('/', (req, res) => {
     res.render('homepage', {
@@ -7,15 +7,11 @@ router.get('/', (req, res) => {
     })
 });
 
-router.get('/signup', (req, res) => {
-    res.render('signup', {
-        loggedIn: false,
-        landlord: true
-    })
-});
-
-router.get('/tenantform', (req, res) => {
-    res.render('tenantform')
+router.get("/signup", (req, res) => {
+  res.render("signup", {
+    loggedIn: false,
+    landlord: true,
+  });
 });
 
 module.exports = router;
