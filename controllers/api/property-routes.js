@@ -96,6 +96,7 @@ router.get("/:id/", (req, res) => {
 
 // post a property
 router.post("/", (req, res) => {
+  console.log(req.body);
   Property.create({
     address: req.body.address,
     nickname: req.body.nickname,
