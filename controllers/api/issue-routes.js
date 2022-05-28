@@ -11,36 +11,38 @@ const sequelize = require("../../config/connection");
 
 // get all units
 router.get("/", (req, res) => {
-  Unit.findAll()
-    .then((unitData) => res.json(unitData))
+  Issue.findAll()
+    .then((issueData) => res.json(issueData))
     .catch((err) => {
       console.log(err);
       res.status(400).json(err);
     });
 });
 
-// get one unit
+// get one issue
 router.get("/:id", (req, res) => {
-  Unit.findOne({
+  Issue.findOne({
     where: {
       id: req.params.id,
     },
 
     include: [
       {
-        model: Issue,
-        attributes: ["id", "issue_title", "issue_text", "status", "unit_id"],
+        model: Comments,
+        attributes: ["id", "comment_text", "issue_id"],
+      },
+
+      {
+        model: Unit,
+        attributes: ["id", "first_name", "last_name", "email", "unit_id"],
         include: [
           {
-            model: Comments,
-            attributes: ["id", "comment_text", "issue_id"],
+            model: Tenant,
+            attributes: ["id", "first_name", "last_name", "email", "unit_id"],
           },
         ],
       },
-      {
-        model: Tenant,
-        attributes: ["id", "first_name", "last_name", "email", "unit_id"],
-      },
+
       {
         model: Property,
         attributes: ["id", "address", "nickname"],
@@ -51,13 +53,13 @@ router.get("/:id", (req, res) => {
       },
     ],
   })
-    .then((unitData) => {
-      if (!unitData) {
-        res.status(404).json({ message: "There is no unit with this id!" });
+    .then((issueData) => {
+      if (!issueData) {
+        res.status(404).json({ message: "There is no issue with this id!" });
         return;
       }
 
-      res.json(unitData);
+      res.json(issueData);
     })
     .catch((err) => {
       console.log(err);
@@ -65,35 +67,35 @@ router.get("/:id", (req, res) => {
     });
 });
 
-// post a unit
+// post a issue
 router.post("/", (req, res) => {
-  Unit.create({
-    unit_number: req.body.unit_number,
-    property_id: req.body.property_id,
-    rent: req.body.rent,
-    rent_due: req.body.rent_due,
+  Issue.create({
+    issue_title: req.body.issue_title,
+    issue_text: req.body.issue_text,
+    status: req.body.status,
+    unit_id: req.body.unit_id,
   })
-    .then((dbUnitData) => res.json(dbUnitData))
+    .then((dbIssueData) => res.json(dbIssueData))
     .catch((err) => {
       console.log(err);
       res.status(500).json(err);
     });
 });
 
-// delete a unit
+// delete a issue
 router.delete("/:id", (req, res) => {
-  Unit.destroy({
+  Issue.destroy({
     where: {
       id: req.params.id,
     },
   })
-    .then((dbUnitData) => {
-      if (!dbUnitData) {
-        res.status(404).json({ message: "There is no unit with that id!" });
+    .then((dbIssueData) => {
+      if (!dbIssueData) {
+        res.status(404).json({ message: "There is no issue with that id!" });
         return;
       }
 
-      res.json(dbUnitData);
+      res.json(dbIssueData);
     })
     .catch((err) => {
       console.log(err);

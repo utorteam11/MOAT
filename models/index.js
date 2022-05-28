@@ -52,5 +52,4 @@ Issue.hasMany(Comments, {
   foreignKey: "issue_id",
 });
 
-
 module.exports = { Landlord, Tenant, Property, Issue, Comments, Unit };
