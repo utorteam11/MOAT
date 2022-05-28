@@ -154,6 +154,7 @@ form label:hover {
 .radio {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .signup input[type="radio"] {
@@ -173,4 +174,23 @@ form label:hover {
 .radio input[type="radio"]:checked + label {
     box-shadow: 0 0 0 3px var(--primary-color);
     color:var(--primary-color);
+}
+
+.reveal-if-active {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    flex: 1 100%;
+    margin-top: 2%;
+}
+
+.reveal-if-active label {
+    border: none;
+    margin: 0;
+}
+
+.radio input[id="tenant"]:checked ~ .reveal-if-active {
+    opacity: 1;
+    max-height: 100px;
+    overflow: visible;
 }
