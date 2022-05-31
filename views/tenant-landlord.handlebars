@@ -1,0 +1,16 @@
+<h2>{{landlord.first_name}}'s Properties:</h2>
+<p>Please select a unit:</p>
+{{#each landlord.properties as |property|}}
+<div>
+    <h2>{{property.nickname}}</h2>
+    <ol>
+        {{#each property.units as |unit|}}
+        <button class="unit-btn" id="{{unit.id}}" type="click">
+            <li>Unit: {{unit.unit_number}}</li>
+        </button>
+        {{/each}}
+    </ol>
+</div>
+{{/each}}
+
+<script src="/javascript/add-tenant.js"></script>
