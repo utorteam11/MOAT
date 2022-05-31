@@ -47,13 +47,13 @@ router.get("/:id/", (req, res) => {
     },
 
     include: [
-      {
-        model: Landlord,
-        attributes: { exclude: ["password"] },
-      },
+      // {
+      //   model: Landlord,
+      //   attributes: { exclude: ["password"] },
+      // },
 
       {
-        model: Unit,
+        model: [Unit],
         attributes: ["id", "unit_number", "property_id", "rent", "rent_due"],
         include: [
           {

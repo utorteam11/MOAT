@@ -21,38 +21,42 @@ router.get("/", (req, res) => {
 
 // get one issue
 router.get("/:id", (req, res) => {
-  Issue.findOne({
-    where: {
-      id: req.params.id,
-    },
+  console.log("issue id to get", req.params.id);
+  Issue.findOne({ 
+    where: { id: req.params.id},
+    include: { all: true, nested: true }})
+  // Issue.findOne({
+  //   where: {
+  //     id: req.params.id,
+  //   },
 
-    include: [
-      {
-        model: Comments,
-        attributes: ["id", "comment_text", "issue_id"],
-      },
+  //   include: [
+  //     {
+  //       model: Comments,
+  //       attributes: ["id", "comment_text", "issue_id"],
+  //     },
 
-      {
-        model: Unit,
-        attributes: ["id", "first_name", "last_name", "email", "unit_id"],
-        include: [
-          {
-            model: Tenant,
-            attributes: ["id", "first_name", "last_name", "email", "unit_id"],
-          },
-        ],
-      },
+  //     {
+  //       model: Unit,
+  //       attributes: ["id", "unit_number", "property_id", "rent", "rent_due"],
+  //       include: [
+  //         {
+  //           model: Tenant,
+  //           attributes: ["id", "first_name", "last_name", "email", "unit_id"],
+  //         },
+  //       ],
+  //     },
 
-      {
-        model: Property,
-        attributes: ["id", "address", "nickname"],
-        include: {
-          model: Landlord,
-          attributes: ["id", "first_name", "last_name", "email"],
-        },
-      },
-    ],
-  })
+  //     // {
+  //     //   model: Property,
+  //     //   attributes: ["id", "address", "nickname"],
+  //     //   include: {
+  //     //     model: Landlord,
+  //     //     attributes: ["id", "first_name", "last_name", "email"],
+  //     //   },
+  //     // },
+  //   ],
+  // })
     .then((issueData) => {
       if (!issueData) {
         res.status(404).json({ message: "There is no issue with this id!" });

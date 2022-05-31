@@ -29,6 +29,14 @@ Property.init(
         key: "id",
       },
     },
+
+    unit_id: { 
+      type: DataTypes.INTEGER,
+      references: {
+        model: "unit",
+        key: "id",
+      }
+    }
   },
   {
     // configurations for table
