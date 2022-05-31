@@ -2,16 +2,17 @@ const router = require("express").Router();
 
 router.get('/', (req, res) => {
     res.render('homepage', {
-        loggedIn: true,
+        loggedIn: false,
         landlord: true
     })
 });
 
 router.get("/signup", (req, res) => {
   res.render("signup", {
-    loggedIn: false,
+    loggedIn: true,
     landlord: true,
   });
 });
+
 
 module.exports = router;
