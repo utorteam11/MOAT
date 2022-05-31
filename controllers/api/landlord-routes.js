@@ -96,6 +96,76 @@ router.get("/:id", (req, res) => {
     });
 });
 
+// get one landlord
+router.get("/:email", (req, res) => {
+  console.log(req.query);
+
+  Landlord.findOne({
+    attributes: { exclude: ["password"] },
+    where: {
+      email: req.params.email,
+    },
+    include: [
+      {
+        model: Property,
+        attributes: ["id", "address", "nickname"],
+        include: [
+          {
+            model: Unit,
+            attributes: [
+              "id",
+              "unit_number",
+              "property_id",
+              "rent",
+              "rent_due",
+            ],
+            include: [
+              {
+                model: Issue,
+                attributes: [
+                  "id",
+                  "issue_title",
+                  "issue_text",
+                  "status",
+                  "unit_id",
+                ],
+                include: [
+                  {
+                    model: Comments,
+                    attributes: ["id", "comment_text", "issue_id"],
+                  },
+                ],
+              },
+              {
+                model: Tenant,
+                attributes: [
+                  "id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "unit_id",
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  })
+    .then((landlordData) => {
+      if (!landlordData) {
+        res.status(404).json({ message: "There is no landlord with this id!" });
+        return;
+      }
+
+      res.json(landlordData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(400).json(err);
+    });
+});
+
 // post a landlord
 router.post("/", (req, res) => {
   Landlord.create({

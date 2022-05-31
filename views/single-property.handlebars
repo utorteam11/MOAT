@@ -1,0 +1,15 @@
+{{#each property as |property|}}
+{{> property-info property}}
+{{/each}}
+
+<h1>Issues:</h1>
+{{#each issues as |issue|}}
+<article class="issue">
+    <a href="/dashboard/issues/{{issue.id}}">
+    <div>
+        <h3>{{issue.issue_title}} <span> - Unit {{issue.unit_number}}</span></h3>
+        <p>{{issue.issue_text}}</p>
+    </div>
+    </a>
+</article>
+{{/each}}

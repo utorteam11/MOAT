@@ -1,43 +1,50 @@
 async function signUpFormHandler(event) {
 
-    event.preventDefault();
+  event.preventDefault();
 
-    const first_name = document.querySelector("input[id='first-name'").value.trim();
-    const last_name = document.querySelector("input[id='second-name'").value.trim();
-    const email = document.querySelector("input[id='email-login'").value.trim();
-    const password = document.querySelector("input[id='password-login'").value.trim();
-    const type = document.querySelector('input[name="resident-type"]:checked').value;
+  const first_name = document.querySelector("input[id='first-name'").value.trim();
+  const last_name = document.querySelector("input[id='second-name'").value.trim();
+  const email = document.querySelector("input[id='email-login'").value.trim();
+  const password = document.querySelector("input[id='password-login'").value.trim();
+  const type = document.querySelector('input[name="resident-type"]:checked').value;
 
 
-    if(first_name && last_name && email && password && type) {
-        switch(type) {
-            case 'tenant':
-                const tenant_unit = document.querySelector('input[id="tenant-unit"]').value;
-                // fetch request for tenant
-                break;
-            case 'landlord':
-                const response = await fetch('/api/landlords', {
-                    method: 'POST',
-                    body: JSON.stringify({
-                        first_name,
-                        last_name,
-                        email,
-                        password
-                    }),
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                })
+  if(first_name && last_name && email && password && type) {
+    switch(type) {
+      case 'tenant':
+        const propertyName = document.querySelector("input[id='property-name'").value.trim();
+        localStorage.setItem('tenant-details', JSON.stringify({
+          first_name,
+          last_name,
+          email,
+          password
+        }))
 
-                if(response.ok) {
-                    document.location.replace('/dashboard')
-                } else {
-                    alert(response.statusText);
-                }
+        document.location.replace(`/portal?property_name=${propertyName}`);
+        break;
+      case 'landlord':
+        const result = await fetch('/api/landlords', {
+            method: 'POST',
+            body: JSON.stringify({
+                first_name,
+                last_name,
+                email,
+                password
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
 
-                break;
-        }
+      if(result.ok) {
+          document.location.replace('/dashboard')
+      } else {
+          alert(response.statusText);
+      }
+
+      break;
     }
+  }
 }
 
 const FormStuff = {

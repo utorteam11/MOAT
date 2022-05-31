@@ -1,0 +1,17 @@
+{{#if loggedIn}}
+  <h2>Welcome to your property dashboard, {{first_name}}!</a></h2>
+  </br>
+{{/if}}
+{{#if property.length}}
+<ol class="property-list">
+  {{#each property as |property|}}
+  <li>
+    {{> property-info property}}
+  </li>
+  {{/each}}
+</ol>
+{{else}}
+ <h3>No properties to display, add a property to get started!</h3>
+ {{/if}}
+
+ <a href="/dashboard/propertyform">+ Add a Property</a>
