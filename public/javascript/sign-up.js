@@ -12,7 +12,7 @@ async function signUpFormHandler(event) {
   if(first_name && last_name && email && password && type) {
     switch(type) {
       case 'tenant':
-        const propertyName = document.querySelector("input[id='property-name'").value.trim();
+        const landlordEmail = document.querySelector("input[id='landlord-email'").value.trim();
         localStorage.setItem('tenant-details', JSON.stringify({
           first_name,
           last_name,
@@ -20,7 +20,7 @@ async function signUpFormHandler(event) {
           password
         }))
 
-        document.location.replace(`/portal?property_name=${propertyName}`);
+        document.location.replace(`/portal?landlord_email=${landlordEmail}`);
         break;
       case 'landlord':
         const result = await fetch('/api/landlords', {
