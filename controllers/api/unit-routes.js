@@ -8,6 +8,7 @@ const {
   Property,
 } = require("../../models");
 const sequelize = require("../../config/connection");
+const uniqid = require('uniqid');
 
 // get all units
 router.get("/", (req, res) => {
@@ -69,6 +70,7 @@ router.get("/:id", (req, res) => {
 router.post("/", (req, res) => {
   Unit.create({
     unit_number: req.body.unit_number,
+    unit_password: uniqid(),
     property_id: req.body.property_id,
     rent: req.body.rent,
     rent_due: req.body.rent_due,

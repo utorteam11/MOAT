@@ -14,6 +14,7 @@ Landlord.hasMany(Property, {
 
 Property.belongsTo(Landlord, {
   foreignKey: "landlord_id",
+  onDelete: 'CASCADE'
 });
 
 // landlord rental relationship

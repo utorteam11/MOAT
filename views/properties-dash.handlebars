@@ -1,10 +1,10 @@
 {{#if loggedIn}}
-  <h2>Welcome to your property dashboard, {{first_name}}!</a></h2>
+  <h2>Welcome to your property dashboard, {{landlord.first_name}}!</a></h2>
   </br>
 {{/if}}
-{{#if property.length}}
+{{#if landlord.properties.length}}
 <ol class="property-list">
-  {{#each property as |property|}}
+  {{#each landlord.properties as |property|}}
   <li>
     {{> property-info property}}
   </li>
