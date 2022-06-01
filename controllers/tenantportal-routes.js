@@ -1,7 +1,8 @@
 const router = require('express').Router();
-const { Landlord, Property, Unit } = require('../models')
+const { Landlord, Property, Unit } = require('../models');
+const withAuth = require("../utils/auth");
 
-router.get('/', (req, res) => {
+router.get('/', withAuth, (req, res) => {
     console.log(req.query)
 
     Landlord.findOne({
@@ -43,7 +44,7 @@ router.get('/', (req, res) => {
     })
 });
 
-router.get('/properties/:id', (req, res) => {
+router.get('/properties/:id', withAuth, (req, res) => {
     Property.findOne({
         where: {
             id: req.params.id
@@ -68,7 +69,9 @@ router.get('/properties/:id', (req, res) => {
         }
 
         const property = propertyData.get({ plain: true })
-        res.render('tenant-property', {property});
+        res.render('tenant-property', {
+          property
+        });
     })
     .catch(err => {
         console.log(err);
@@ -76,7 +79,7 @@ router.get('/properties/:id', (req, res) => {
     })
 });
 
-router.get('/units/:id', (req, res) => {
+router.get('/units/:id', withAuth, (req, res) => {
     
 })
 

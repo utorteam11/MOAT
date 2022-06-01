@@ -1,7 +1,8 @@
 const router = require('express').Router();
+const withAuth = require("../utils/auth");
 const { Landlord, Property, Unit, Issue, Tenant } = require('../models')
 
-router.get('/properties', (req, res) => {
+router.get('/properties', withAuth, (req, res) => {
     // find properties where landlord_id is equal to req.session.user_id
     Landlord.findOne({
         attributes: { exclude: ["password"] },
@@ -22,20 +23,22 @@ router.get('/properties', (req, res) => {
         console.log(landlord)
         res.render('properties-dash', {
             landlord,
-            loggedIn: true
+            loggedIn: true,
+            type: req.session.type
         })
       })
 })
 
 
-router.get("/propertyform", (req, res) => {
+router.get("/propertyform", withAuth, (req, res) => {
     res.render('property-form', {
         loggedIn: true,
-        landlord: true 
+        landlord: true,
+        type: req.session.type
     });
 })
 
-router.get('/properties/:id', (req, res) => {
+router.get('/properties/:id', withAuth, (req, res) => {
     // find properties where landlord_id is equal to req.session.user_id and property is equal to req.params.id
     Property.findOne({
         where: {
@@ -55,17 +58,16 @@ router.get('/properties/:id', (req, res) => {
     })
     .then(dbPropertyData => {
         const property = dbPropertyData.get({ plain: true });
-
+        
         res.render('single-property', {
             property,
             loggedIn: true,
-            landlord: true
+            type: req.session.type
         })
     })
-
 })
 
-router.get('/units/:id', (req, res) => {
+router.get('/units/:id', withAuth, (req, res) => {
     Unit.findOne({
         where: {
             id: req.params.id
@@ -88,7 +90,9 @@ router.get('/units/:id', (req, res) => {
     .then(dbUnitData => {
         const unit = dbUnitData.get({ plain: true })
         res.render('single-unit', {
-            unit
+            unit,
+            loggedIn: true,
+            type: req.session.type
         })
     })
 })
