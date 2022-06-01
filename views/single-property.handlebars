@@ -1,9 +1,9 @@
 {{> property-info property}}
 
 {{#if property.units.length}}
-<h1>Your Units:</h1>
+<h2>Your Units:</h2>
 {{#each property.units as |unit|}}
-<article class="issue">
+<article>
     <a href="/dashboard/units/{{unit.id}}">
     <div>
         <h3>{{unit.unit_number}}</h3>
@@ -12,4 +12,4 @@
 </article>
 {{/each}}
 {{/if}}
- <a href="/dashboard/propertyform">+ Add a Unit</a>
+ <a href="/dashboard/unitform/{{property.id}}">+ Add a Unit</a>

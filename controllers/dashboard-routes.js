@@ -2,13 +2,14 @@ const router = require('express').Router();
 const withAuth = require("../utils/auth");
 const { Landlord, Property, Unit, Issue, Tenant } = require('../models')
 
-router.get('/properties', withAuth, (req, res) => {
+router.get('/properties', (req, res) => {
     // find properties where landlord_id is equal to req.session.user_id
+    console.log(req.session)
     Landlord.findOne({
         attributes: { exclude: ["password"] },
         where: {
             // to update with req.session.user_id
-          id: 1,
+            id: req.session.landlord_id
         },
         include: [
           {
@@ -23,8 +24,7 @@ router.get('/properties', withAuth, (req, res) => {
         console.log(landlord)
         res.render('properties-dash', {
             landlord,
-            loggedIn: true,
-            type: req.session.type
+            loggedIn: true
         })
       })
 })
@@ -34,7 +34,7 @@ router.get("/propertyform", withAuth, (req, res) => {
     res.render('property-form', {
         loggedIn: true,
         landlord: true,
-        type: req.session.type
+        landlord: req.session.landLord
     });
 })
 
@@ -62,7 +62,7 @@ router.get('/properties/:id', withAuth, (req, res) => {
         res.render('single-property', {
             property,
             loggedIn: true,
-            type: req.session.type
+            landlord: req.session.landLord
         })
     })
 })
@@ -92,9 +92,17 @@ router.get('/units/:id', withAuth, (req, res) => {
         res.render('single-unit', {
             unit,
             loggedIn: true,
-            type: req.session.type
+            landlord: req.session.landLord
         })
     })
 })
+
+router.get("/unitform/:id", (req, res) => {
+    res.render('unit-form', {
+        loggedIn: true,
+        landlord: req.session.landLord 
+    });
+})
+
 
 module.exports = router;

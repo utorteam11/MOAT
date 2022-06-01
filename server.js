@@ -24,7 +24,7 @@ const sess = {
     })
   };
 
-app.use(session(sess)); 
+
 
 // express middleware
 app.use(express.json());
@@ -37,6 +37,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
+app.use(session(sess)); 
 app.use(routes);
 
 // turn on connection to db and server

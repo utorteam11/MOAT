@@ -37,7 +37,7 @@ async function signUpFormHandler(event) {
         })
 
       if(result.ok) {
-          document.location.replace('/dashboard')
+          document.location.replace('/dashboard/properties')
       } else {
           alert(response.statusText);
       }
