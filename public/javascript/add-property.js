@@ -3,14 +3,15 @@ async function propertyFormHandler(event) {
 
     const nickname = document.querySelector('#property-nickname').value.trim();
     const address = document.querySelector('#property-address').value.trim();
+    console.log(nickname, address)
 
     if (nickname && address) {
         const response = await fetch('/api/properties', {
             method: 'POST',
-            body: {
+            body: JSON.stringify({
                 nickname,
                 address
-            },
+            }),
             headers: {
                 'Content-Type': 'application/json'
             }

@@ -30,6 +30,10 @@ Unit.init(
       type: DataTypes.DATE,
       allowNull: false,
     },
+    unit_password: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
   },
   {
     // configurations for table
