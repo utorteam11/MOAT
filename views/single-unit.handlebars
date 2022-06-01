@@ -8,12 +8,12 @@
 {{#if unit.issues.length}}
 {{#each unit.issues as |issue|}}
 <article class="issue">
-    <a href="/dashboard/issues/{{issue.id}}">
     <div>
-        <h3>{{issue.issue_title}}</h3>
-        <p>{{issue.issue_text}}</p>
+        <h3>Issue: {{issue.issue_title}}</h3>
+        <p>Description: {{issue.issue_text}}</p>
     </div>
-    </a>
 </article>
 {{/each}}
+{{else}}
+    <h3>This unit has no issues!</h3>
 {{/if}}

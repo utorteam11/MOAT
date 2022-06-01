@@ -97,4 +97,12 @@ router.get('/units/:id', withAuth, (req, res) => {
     })
 })
 
+router.get("/unitform/:id", (req, res) => {
+    res.render('unit-form', {
+        loggedIn: true,
+        landlord: true 
+    });
+})
+
+
 module.exports = router;

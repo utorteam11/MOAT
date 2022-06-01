@@ -224,3 +224,13 @@ li {
 .unit-btn {
     width: 30%;
 }
+
+.issue {
+    padding: 1%;
+    margin-bottom: 1%;
+}
+
+.issue:nth-child(odd) {
+background-color:#384977;
+color: white;
+}
