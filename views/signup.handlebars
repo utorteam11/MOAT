@@ -1,0 +1,41 @@
+<div class="form-wrapper">
+    <div class="login">
+    <h2>Get Started!</h2>
+    <p>Moat&trade; is committed to bridging the gap between property managers and tenants, we just need some information from you first!</p></br>
+    <form class="signup">
+        <div class="small-form">
+            <label for="first-name">First Name:</label>
+            <input type="text" id="first-name" />
+        </div>
+        <div class="small-form">
+            <label for="second-name">Second Name:</label>
+            <input type="text" id="second-name" />
+        </div>
+        <div class="big-form">
+            <label for="email-login">Email:</label>
+            <input type="text" id="email-login" />
+        </div>
+        <div class="big-form">
+            <label for="password-login">Password:</label>
+            <input type="password" id="password-login" />
+        </div>
+        <div class="small-form radio">
+            <input type="radio" id="landlord" name="resident-type" value="landlord">
+            <label type="radio" for="landlord">Landlord</label><br>
+            <input type="radio" id="tenant" name="resident-type" value="tenant">
+            <label type="radio" for="tenant">Tenant</label><br>
+            <div class="reveal-if-active">
+                <label for="landlord-email">Please enter your landlord name:</label>
+                <input class=".require-if-active" type="text" id="landlord-email" name="landlord-email" data-require-pair="#tenant">
+            </div>
+        </div>
+
+        <div class="big-form">
+            <button type="submit">Continue</button>
+        </div>
+    </form>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="/javascript/sign-up.js"></script>

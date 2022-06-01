@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moat</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500&family=Manrope:wght@200;300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+    <div class="wrapper">
+    <header>
+      <a href="/">
+        <h1>
+        Moat
+        </h1>
+      </a>
+      <nav>
+        <a href="/" >Home</a>
+        {{#if loggedIn}}
+            {{#if landlord}}
+            <a href="/dashboard/properties">My Properties</a>
+            {{else}}
+            <a href="/portal">My Portal</a>
+            {{/if}}
+            <button id="logout" class="btn-no-style">Logout</button>
+        {{/if}}
+
+      </nav>
+    </header>
+    <main>
+      {{{ body }}}
+    </main>
+    <footer>
+      An Application by Oceans 11
+    </footer>
+  </div>
+</body>
