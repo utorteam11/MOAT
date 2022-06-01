@@ -1,8 +1,14 @@
+{{#if landlord}}
 <a href="/dashboard/properties/{{unit.property.id}}"> &larr; Back to Property</a>
-
+{{else}}
+<a href="/portal"> &larr; Back to Portal</a>
+{{/if}}
 
 <h1>Unit Number: {{unit.unit_number}}</h1>
 <h2>{{unit.property.nickname}}</h2>
+{{#if landlord}}
+<p>Access Code: {{unit.unit_password}}</p>
+{{/if}}
 
 <h1>Issues:</h1>
 {{#if unit.issues.length}}
@@ -17,3 +23,4 @@
 {{else}}
     <h3>This unit has no issues!</h3>
 {{/if}}
+

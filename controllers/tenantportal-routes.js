@@ -1,45 +1,67 @@
 const router = require('express').Router();
-const { Landlord, Property, Unit } = require('../models');
+const { Landlord, Property, Unit, Tenant } = require('../models');
 const withAuth = require("../utils/auth");
 
-router.get('/', withAuth, (req, res) => {
+router.get('/', (req, res) => {
+  Tenant.findOne(
+    {
+      where: {
+        id: req.session.tenant_id
+      },
+      include: [
+        {
+          model: Unit,
+          attributes: ["id", "unit_number", "property_id", "rent", "rent_due"],
+          include: [
+            {
+              model: Property,
+              attributes: ["id", "address", "nickname"],
+              include: {
+                model: Landlord,
+                attributes: ["id", "first_name", "last_name", "email"],
+              },
+            }
+          ]
+        }
+      ]
+    }
+  )
+  .then(tenantData => {
+    const tenant = tenantData.get({ plain: true });
+    res.render('unit-dash', {
+      tenant,
+      loggedIn: true,
+      landLord: req.session.landLord
+    })
+  })
+})
+
+router.get('/unitconfirm', (req, res) => {
     console.log(req.query)
 
-    Landlord.findOne({
-        attributes: { exclude: ["password"] },
+    Unit.findOne({
         where: {
-            email: req.query.landlord_email
+            unit_password: req.query.access_code
         },
         include: [
             {
               model: Property,
-              attributes: ["id", "address", "nickname"],
-              include: [
-                {
-                  model: Unit,
-                  attributes: [
-                    "id",
-                    "unit_number",
-                    "property_id",
-                    "rent",
-                    "rent_due",
-                  ]
-                },
-              ],
-            },
+              attributes: ["id", "address", "nickname"]
+            }
           ],
     })
-    .then(landlordData => {
-        if(!landlordData) {
-            res.status(404).json({ message: 'There is no landlord with that name!'})
+    .then(unitData => {
+        if(!unitData) {
+            res.status(404).json({ message: 'There is no unit with that code!'})
             return;
         }
 
-        const landlord = landlordData.get({ plain: true })
-        res.render('tenant-landlord', {
-          landlord,
+        const unit = unitData.get({ plain: true })
+        console.log(unit)
+        res.render('tenant-unit', {
+          unit,
           loggedIn: true,
-          type: req.session.type
+          Landlord: req.session.landLord
         });
     })
     .catch(err => {

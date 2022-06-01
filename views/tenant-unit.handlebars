@@ -1,0 +1,12 @@
+{{#if unit}}
+<div>
+    <h2>Your access code was successful!</h2>
+    <div>
+        <p>Please confirm your unit:</p>
+        <button id="{{unit.id}}" class="unit-btn" type="click">{{unit.unit_number}}</button>
+    </div>
+</div>
+<script src="/javascript/add-tenant.js"></script>
+{{else}}
+<h2>The access code you provided did not return any units!</h2>
+{{/if}}

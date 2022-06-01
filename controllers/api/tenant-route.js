@@ -88,7 +88,7 @@ router.post("/", (req, res) => {
         req.session.tenant_id = dbTenantData.id;
         req.session.email = dbTenantData.email;
         req.session.loggedIn = true;
-        req.session.tenant = true;
+        req.session.landLord = false;
 
         res.json(dbTenantData)
       })
@@ -116,8 +116,10 @@ router.post('/login', (req, res) => {
     }
 
     req.session.save(()=>{
+        req.session.tenant_id = dbTenantData.id;
         req.session.email = dbTenantData.email;
         req.session.loggedIn = true;
+        req.session.landLord = false;
 
         res.json({dbTenantData, message: "Logged in."});
     });

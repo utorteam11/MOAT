@@ -206,7 +206,7 @@ li {
 .property {
     margin-bottom: 2%;
     line-height: 150%;
-    padding-bottom: 3%;
+    padding-bottom: 1%;
     border-bottom: #000000 1px solid;
   }
   
@@ -225,6 +225,12 @@ li {
     width: 30%;
 }
 
+.tenant-btn {
+    background-color: #011936;
+    color: white;
+    border-radius: 5px;
+    padding: 1%;
+}
 .issue {
     padding: 1%;
     margin-bottom: 1%;
