@@ -104,12 +104,57 @@ router.post("/", (req, res) => {
     email: req.body.email,
     password: req.body.password,
   })
-    .then((dbLandlordData) => res.json(dbLandlordData))
+    .then((dbLandlordData) => {
+      req.session.save(()=>{
+        req.session.landlord_id = dbLandlordData.id;
+        req.session.email = dbLandlordData.email;
+        req.session.loggedIn = true;
+        req.session.type = 'landlord';
+      })
+      res.json(dbLandlordData)
+    })
     .catch((err) => {
       console.log(err);
       res.status(500).json(err);
     });
 });
+
+router.post('/login', (req, res) => {
+  Landlord.findOne({
+    where: {email: req.body.email}
+  })
+  .then(dbLandlordData=>{
+    if(!dbLandlordData){
+      res.status(400).json({message: 'No landlord of this email!'});
+      return;
+    }
+
+    const validPassword = dbLandlordData.checkPassword(req.body.password);
+    if(!validPassword){
+      res.status(400).json({message: 'Invalid password!'});
+      return;
+    }
+
+    req.session.save(()=>{
+        req.session.email = dbLandlordData.email;
+        req.session.loggedIn = true;
+        req.session.type = 'landlord';
+
+        res.json({dbLandlordData, message: "Logged in."});
+    });
+  });
+});
+
+router.post('/logout', (req, res)=>{
+  if(req.session.loggedIn){
+    req.session.destroy(()=>{
+      res.status(204).end();
+    })
+  }
+  else {
+    res.status(404).end();
+  }
+})
 
 // delete a landlord
 router.delete("/:id", (req, res) => {
