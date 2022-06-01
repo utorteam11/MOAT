@@ -88,9 +88,10 @@ router.post("/", (req, res) => {
         req.session.tenant_id = dbTenantData.id;
         req.session.email = dbTenantData.email;
         req.session.loggedIn = true;
-        req.session.type = 'tenant';
+        req.session.tenant = true;
+
+        res.json(dbTenantData)
       })
-      res.json(dbTenantData)
     })
     .catch((err) => {
       console.log(err);
