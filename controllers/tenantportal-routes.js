@@ -36,7 +36,11 @@ router.get('/', withAuth, (req, res) => {
         }
 
         const landlord = landlordData.get({ plain: true })
-        res.render('tenant-landlord', {landlord});
+        res.render('tenant-landlord', {
+          landlord,
+          loggedIn: true,
+          type: req.session.type
+        });
     })
     .catch(err => {
         console.log(err);
@@ -70,7 +74,9 @@ router.get('/properties/:id', withAuth, (req, res) => {
 
         const property = propertyData.get({ plain: true })
         res.render('tenant-property', {
-          property
+          property,
+          loggedIn: true,
+          type: req.session.type
         });
     })
     .catch(err => {
