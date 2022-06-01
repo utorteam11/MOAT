@@ -100,13 +100,7 @@ router.post("/", (req, res) => {
   Property.create({
     address: req.body.address,
     nickname: req.body.nickname,
-<<<<<<< HEAD
-    // landlord_id: req.body.landlord_id,
-    landlord_id: "1"
-
-=======
     landlord_id: req.session.landlord_id,
->>>>>>> 01be5d1008f0d469f02a561502d41d128f2c0017
   })
     .then((dbPropertyData) => res.json(dbPropertyData))
     .catch((err) => {
