@@ -1,15 +1,15 @@
-{{#each property as |property|}}
 {{> property-info property}}
-{{/each}}
 
-<h1>Issues:</h1>
-{{#each issues as |issue|}}
+{{#if property.units.length}}
+<h1>Your Units:</h1>
+{{#each property.units as |unit|}}
 <article class="issue">
-    <a href="/dashboard/issues/{{issue.id}}">
+    <a href="/dashboard/units/{{unit.id}}">
     <div>
-        <h3>{{issue.issue_title}} <span> - Unit {{issue.unit_number}}</span></h3>
-        <p>{{issue.issue_text}}</p>
+        <h3>{{unit.unit_number}}</h3>
     </div>
     </a>
 </article>
 {{/each}}
+{{/if}}
+ <a href="/dashboard/propertyform">+ Add a Unit</a>

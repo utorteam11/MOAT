@@ -28,7 +28,8 @@
     "express-handlebars": "^6.0.6",
     "express-session": "^1.17.3",
     "mysql2": "^2.3.3",
-    "sequelize": "^6.20.0"
+    "sequelize": "^6.20.0",
+    "uniqid": "^5.4.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.16"
