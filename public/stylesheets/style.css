@@ -235,6 +235,16 @@ li {
     border-bottom: #000000 1px solid;
   }
   
+  .property-card {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+  }
+  .property-image {
+      width: 5%;
+      height: 5%;
+  }
+
   .property .title span {
     font-style: italic;
     font-size: 90%;
