@@ -12,7 +12,7 @@ async function signUpFormHandler(event) {
   if(first_name && last_name && email && password && type) {
     switch(type) {
       case 'tenant':
-        const landlordEmail = document.querySelector("input[id='landlord-email'").value.trim();
+        const unit_password = document.querySelector("input[id='unit-access'").value.trim();
         localStorage.setItem('tenant-details', JSON.stringify({
           first_name,
           last_name,
@@ -20,7 +20,7 @@ async function signUpFormHandler(event) {
           password
         }))
 
-        document.location.replace(`/portal?landlord_email=${landlordEmail}`);
+        document.location.replace(`/portal/unitconfirm?access_code=${unit_password}`);
         break;
       case 'landlord':
         const result = await fetch('/api/landlords', {
@@ -37,7 +37,7 @@ async function signUpFormHandler(event) {
         })
 
       if(result.ok) {
-          document.location.replace('/dashboard')
+          document.location.replace('/dashboard/properties')
       } else {
           alert(response.statusText);
       }

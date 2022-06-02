@@ -1,13 +1,15 @@
 const router = require('express').Router();
+const withAuth = require("../utils/auth");
 const { Landlord, Property, Unit, Issue, Tenant } = require('../models')
 
-router.get('/properties', (req, res) => {
+router.get('/properties', withAuth, (req, res) => {
     // find properties where landlord_id is equal to req.session.user_id
+    console.log(req.session)
     Landlord.findOne({
         attributes: { exclude: ["password"] },
         where: {
             // to update with req.session.user_id
-          id: 1,
+            id: req.session.landlord_id
         },
         include: [
           {
@@ -28,14 +30,15 @@ router.get('/properties', (req, res) => {
 })
 
 
-router.get("/propertyform", (req, res) => {
+router.get("/propertyform", withAuth, (req, res) => {
     res.render('property-form', {
         loggedIn: true,
-        landlord: true 
+        landlord: true,
+        landlord: req.session.landLord
     });
 })
 
-router.get('/properties/:id', (req, res) => {
+router.get('/properties/:id', withAuth, (req, res) => {
     // find properties where landlord_id is equal to req.session.user_id and property is equal to req.params.id
     Property.findOne({
         where: {
@@ -55,17 +58,16 @@ router.get('/properties/:id', (req, res) => {
     })
     .then(dbPropertyData => {
         const property = dbPropertyData.get({ plain: true });
-
+        
         res.render('single-property', {
             property,
             loggedIn: true,
-            landlord: true
+            landlord: req.session.landLord
         })
     })
-
 })
 
-router.get('/units/:id', (req, res) => {
+router.get('/units/:id', withAuth, (req, res) => {
     Unit.findOne({
         where: {
             id: req.params.id
@@ -88,9 +90,19 @@ router.get('/units/:id', (req, res) => {
     .then(dbUnitData => {
         const unit = dbUnitData.get({ plain: true })
         res.render('single-unit', {
-            unit
+            unit,
+            loggedIn: true,
+            landlord: req.session.landLord
         })
     })
 })
+
+router.get("/unitform/:id", (req, res) => {
+    res.render('unit-form', {
+        loggedIn: true,
+        landlord: req.session.landLord 
+    });
+})
+
 
 module.exports = router;

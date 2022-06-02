@@ -1,16 +1,19 @@
 const router = require("express").Router();
+const withAuth = require("../utils/auth");
 
 router.get('/', (req, res) => {
+    console.log(req.session)
+
     res.render('homepage', {
-        loggedIn: true,
-        landlord: true
+      loggedIn: req.session.loggedIn,
+      landlord: req.session.landLord
     })
 });
 
 router.get("/signup", (req, res) => {
   res.render("signup", {
     loggedIn: false,
-    landlord: true,
+    type: req.session.type
   });
 });
 

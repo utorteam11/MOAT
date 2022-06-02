@@ -20,6 +20,7 @@ router.get("/", (req, res) => {
 });
 
 // get one comments
+/*
 router.get("/:id", (req, res) => {
   Comments.findOne({
     where: {
@@ -72,6 +73,7 @@ router.get("/:id", (req, res) => {
       res.status(400).json(err);
     });
 });
+*/
 
 // post a comments
 router.post("/", (req, res) => {

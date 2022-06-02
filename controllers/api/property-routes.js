@@ -47,13 +47,13 @@ router.get("/:id/", (req, res) => {
     },
 
     include: [
-      {
-        model: Landlord,
-        attributes: { exclude: ["password"] },
-      },
+      // {
+      //   model: Landlord,
+      //   attributes: { exclude: ["password"] },
+      // },
 
       {
-        model: Unit,
+        model: [Unit],
         attributes: ["id", "unit_number", "property_id", "rent", "rent_due"],
         include: [
           {
@@ -100,9 +100,7 @@ router.post("/", (req, res) => {
   Property.create({
     address: req.body.address,
     nickname: req.body.nickname,
-    // landlord_id: req.body.landlord_id,
-    landlord_id: "1"
-
+    landlord_id: req.session.landlord_id,
   })
     .then((dbPropertyData) => res.json(dbPropertyData))
     .catch((err) => {

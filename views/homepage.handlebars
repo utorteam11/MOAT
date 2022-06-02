@@ -1,9 +1,13 @@
 <div class="form-wrapper">
     {{#if loggedIn}}
-    <h1>Welcome to your Moat!</h1>
+    <div class="flex">
+        <img src="/images/logo-picture.png"/>
+        <h1>Welcome to </br> your Moat&trade;</h1>
+    </div>
     {{else}}
     <div class="login">
     <h2>Log In</h2>
+    <p>Moat&trade; is excited to welcome you back!</p></br>
     <form class="signup">
         <div class="big-form">
             <label for="email-login">Email:</label>
@@ -12,6 +16,12 @@
         <div class="big-form">
             <label for="password-login">Password:</label>
             <input type="password" id="password-login" />
+        </div>
+        <div class="small-form radio">
+            <input type="radio" id="landlord" name="resident-type" value="landlord">
+            <label type="radio" for="landlord">Landlord</label><br>
+            <input type="radio" id="tenant" name="resident-type" value="tenant">
+            <label type="radio" for="tenant">Tenant</label><br>
         </div>
         <div class="big-form">
             <button type="submit">Login</button>
