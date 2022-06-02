@@ -221,6 +221,12 @@ li {
     padding: 0
 }
 
+.property-btn {
+    width: 30%;
+    height: 50%;
+    padding: 0;
+    margin: 0;
+}
 .unit-btn {
     width: 30%;
 }

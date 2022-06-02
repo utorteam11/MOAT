@@ -12,8 +12,8 @@
 
 <h1>Issues:</h1>
 {{#if unit.issues.length}}
+{{#each unit.issues as |issue|}}
 <article class="issue-box">
-    {{#each unit.issues as |issue|}}
     <div>
         <h3>Issue: {{issue.issue_title}}</h3>
         <p>Description: {{issue.issue_text}}</p>
@@ -21,8 +21,8 @@
     <div>
         <button id="{{issue.id}}" class="resolve">Resolve</button>
     </div>
-    {{/each}}
 </article>
+{{/each}}
 <script src="/javascript/delete-issue.js"></script>
 {{else}}
     <h3>This unit has no issues!</h3>

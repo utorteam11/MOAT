@@ -10,9 +10,13 @@ async function issueDeleteHandler(event) {
             alert('Issue Resolved!');
             location.reload();
         } else {
-            alert('Error')
+            alert(response.statusText)
         }
     }
 }
 
-document.querySelector('.resolve').addEventListener('click', issueDeleteHandler);
+// add event listener to every resolve button displayed
+btns = document.getElementsByClassName("resolve");
+for (var i = 0; i < btns.length; i++) {
+    btns[i].addEventListener("click", issueDeleteHandler);
+};
