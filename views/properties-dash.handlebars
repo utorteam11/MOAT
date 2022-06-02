@@ -5,11 +5,12 @@
 {{#if landlord.properties.length}}
 <ol class="property-list">
   {{#each landlord.properties as |property|}}
-  <li>
+  <li class="property-box">
     {{> property-info property}}
   </li>
   {{/each}}
 </ol>
+<script src="/javascript/delete-property.js"></script>
 {{else}}
  <h3>No properties to display, add a property to get started!</h3>
  {{/if}}

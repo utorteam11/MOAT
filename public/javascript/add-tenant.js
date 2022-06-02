@@ -1,7 +1,6 @@
 async function tenantUnitSelectHandler (event) {
     // get unit id from button selected and convert to number
     const unit_id = event.target.getAttribute('id');
-    console.log(unit_id)
     const { first_name, last_name, email, password } = JSON.parse(localStorage.getItem('tenant-details'));
     
     const response = await fetch('/api/tenants', {
@@ -20,6 +19,7 @@ async function tenantUnitSelectHandler (event) {
 
     if(response.ok) {
         alert('You have successfully registered as a tenant!');
+        window.localStorage.clear();
         document.location.replace('/');
     } else {
         alert(response.statusText)

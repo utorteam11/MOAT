@@ -1,19 +1,49 @@
+{{#if landlord}}
 <a href="/dashboard/properties/{{unit.property.id}}"> &larr; Back to Property</a>
-
+{{else}}
+<a href="/portal"> &larr; Back to Portal</a>
+{{/if}}
 
 <h1>Unit Number: {{unit.unit_number}}</h1>
 <h2>{{unit.property.nickname}}</h2>
+{{#if landlord}}
+<p>Access Code: {{unit.unit_password}}</p>
+{{/if}}
 
 <h1>Issues:</h1>
 {{#if unit.issues.length}}
 {{#each unit.issues as |issue|}}
-<article class="issue">
+<article class="issue-box">
     <div>
         <h3>Issue: {{issue.issue_title}}</h3>
         <p>Description: {{issue.issue_text}}</p>
     </div>
+    <div>
+        <button id="{{issue.id}}" class="resolve">Resolve</button>
+    </div>
 </article>
 {{/each}}
+<script src="/javascript/delete-issue.js"></script>
 {{else}}
     <h3>This unit has no issues!</h3>
 {{/if}}
+
+{{#unless landlord}}
+</br>
+<section>
+    <h3>Post an Issue</h3>
+
+    <form class="issue-form">
+        <div>
+            <label for="issue-title">Title</label>
+            <input type="text" id="issue-title" name="issue-title" />
+        </div>
+        <div>
+            <label for="issue-text">Describe your issue:</label>
+            <textarea id="issue-text" name="issue-text"></textarea>
+        </div>
+            <button type="submit" class="btn">+Add Issue</button>
+    </form>
+</section>
+<script src="/javascript/add-issue.js"></script>
+{{/unless}}
