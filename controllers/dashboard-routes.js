@@ -2,7 +2,7 @@ const router = require('express').Router();
 const withAuth = require("../utils/auth");
 const { Landlord, Property, Unit, Issue, Tenant } = require('../models')
 
-router.get('/properties', (req, res) => {
+router.get('/properties', withAuth, (req, res) => {
     // find properties where landlord_id is equal to req.session.user_id
     console.log(req.session)
     Landlord.findOne({
