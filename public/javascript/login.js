@@ -19,7 +19,7 @@ async function loginFormHandler(event) {
                 if(result.ok) {
                     document.location.replace('/');
                 } else {
-                    alert(response.statusText);
+                    alert(result.statusText);
                 }
                 break;
             case "landlord":
