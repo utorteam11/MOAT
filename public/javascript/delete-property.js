@@ -9,7 +9,7 @@ async function propertyDeleteHandler (event) {
 
         if(response.ok) {
             alert('Property successfully deleted!');
-            location.reload();
+            location.replace('/dashboard/properties');
         } else {
             alert(response.statusText)
         }
