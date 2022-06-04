@@ -1,3 +1,5 @@
+import {modalAlert} from './modal.js'
+
 async function loginFormHandler(event) {
     event.preventDefault();
     const email = document.querySelector('#email-login').value.trim();
@@ -19,7 +21,7 @@ async function loginFormHandler(event) {
                 if(result.ok) {
                     document.location.replace('/');
                 } else {
-                    alert(result.statusText);
+                    modalAlert(`${result.statusText}. There was an error in your submission! Please try again.`);
                 }
                 break;
             case "landlord":
@@ -35,7 +37,7 @@ async function loginFormHandler(event) {
                 if(response.ok) {
                     document.location.replace('/');
                 } else {
-                    alert(response.statusText);
+                    modalAlert(`${response.statusText}. There was an error in your submission! Please try again.`);
                 }
 
                 break;

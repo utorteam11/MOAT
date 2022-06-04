@@ -1,3 +1,5 @@
+import {modalAlert} from './modal.js'
+
 async function signUpFormHandler(event) {
 
   event.preventDefault();
@@ -39,7 +41,7 @@ async function signUpFormHandler(event) {
       if(result.ok) {
           document.location.replace('/dashboard/properties')
       } else {
-          alert(response.statusText);
+          modalAlert(`${result.statusText}. There was an error in your submission! Please try again.`);
       }
 
       break;
