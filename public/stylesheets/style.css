@@ -1,5 +1,5 @@
 :root {
-    --primary-color: #3d77ff;
+    --primary-color: black;
 }
 
 * {
@@ -26,7 +26,7 @@ body::after {
     right: 0;
     position: absolute;
     z-index: -1;
-  }
+}
 
 .logo-img {
     margin: 20px 0 0 5px;
