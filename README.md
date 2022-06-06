@@ -23,14 +23,15 @@ https://moatbyoceans11.herokuapp.com/
 
 ## Built-Logic:
 1. Write out DB Models
-2. Relations of DB models (Associations) drawn in a process flow chart.
+2. Relations of DB models (Associations) drawn in an ER Diagram.
 3. Work on Landlord and Tenant routes (login/logout) on backend && add sessions.
 4. Work on Property, Unit, Issue and Comment routes on backend
 5. Once routes on backend are tested (insomnia), go to frontend JS files (public/javascript) and connect end points from backend by rendering the get requests.
 6. Inject data from backend to display on page (handlebars.js).
 7. Then get to styling (stylesheets).
 
-## Models && Associations Diagram: 
+## Models && Associations Diagram (ER Diagram): 
+-This is a middleman diagram to help us to convert our business idea into a database schema(sequelize api routes)
 ![image](https://user-images.githubusercontent.com/95199209/170776018-07866f16-d286-4a30-854d-7c272f76ea02.png)
 
 
