@@ -1,3 +1,5 @@
+import {modalAlert} from './modal.js'
+
 async function issueDeleteHandler(event) {
     const issue_id = event.target.getAttribute('id');
     console.log(issue_id)
@@ -7,16 +9,16 @@ async function issueDeleteHandler(event) {
         })
 
         if(response.ok) {
-            alert('Issue Resolved!');
-            location.reload();
+            modalAlert('Issue Resolved!');
+            setTimeout(() => location.reload(), 2000)
         } else {
-            alert(response.statusText)
+            modalAlert(response.statusText)
         }
     }
 }
 
 // add event listener to every resolve button displayed
-btns = document.getElementsByClassName("resolve");
+const btns = document.getElementsByClassName("resolve");
 for (var i = 0; i < btns.length; i++) {
     btns[i].addEventListener("click", issueDeleteHandler);
 };
