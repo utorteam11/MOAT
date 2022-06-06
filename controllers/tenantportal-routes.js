@@ -52,7 +52,7 @@ router.get('/unitconfirm', (req, res) => {
     })
     .then(unitData => {
         if(!unitData) {
-            res.status(404).json({ message: 'There is no unit with that code!'})
+            res.status(404).render('access-error')
             return;
         }
 
