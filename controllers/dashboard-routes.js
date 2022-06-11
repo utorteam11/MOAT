@@ -99,6 +99,7 @@ router.get('/units/:id', withAuth, (req, res) => {
 
 router.get("/unitform/:id", (req, res) => {
     res.render('unit-form', {
+        property_id: req.params.id,
         loggedIn: true,
         landlord: req.session.landLord 
     });
