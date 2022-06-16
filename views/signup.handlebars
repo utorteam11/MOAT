@@ -21,9 +21,9 @@
         </div>
         <div class="small-form radio">
             <input type="radio" id="landlord" name="resident-type" value="landlord">
-            <label type="radio" for="landlord">Landlord</label><br>
+            <label class="radio-label" type="radio" for="landlord">Landlord</label><br>
             <input type="radio" id="tenant" name="resident-type" value="tenant">
-            <label type="radio" for="tenant">Tenant</label><br>
+            <label class="radio-label" type="radio" for="tenant">Tenant</label><br>
             <div class="reveal-if-active">
                 <label for="unit-access">Please enter your unit access code (from your landlord):</label>
                 <input class=".require-if-active" type="text" id="unit-access" name="unit-access" data-require-pair="#tenant">
@@ -31,7 +31,7 @@
         </div>
 
         <div class="big-form">
-            <button type="submit">Continue</button>
+            <button class="issue-form" type="submit">Continue</button>
         </div>
     </form>
     </div>
