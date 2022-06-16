@@ -15,19 +15,6 @@ body, html {
     background-color: #F0F4FF;
 }
 
-body::after {
-    content: "";
-    background-repeat: no-repeat;
-    background-size: 300px 100px;
-    opacity: 0.05;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    position: absolute;
-    z-index: -1;
-}
-
 .logo-img {
     margin: 10px 0 0 0px;
     width: 10%;
@@ -195,7 +182,7 @@ form label:hover {
     display: none;
 }
 
-.radio label {
+.radio-label {
     padding: 5px;
     border: 0.5px solid transparent;
     cursor: pointer;
@@ -204,10 +191,16 @@ form label:hover {
     transition-duration: 0.5s;
 }
 
-.radio label:hover {
+.radio-label:hover {
     border: 0.5px solid;
     border-radius: 5px;
     border-color: var(--primary-color);
+}
+
+.no-style:hover {
+    border: 0 none;
+    border-radius: 0;
+    border-color: none;
 }
 
 .radio input[type="radio"]:checked + label {
@@ -300,9 +293,20 @@ li {
     font-style: italic;
 }
 
+.issue-form {
+    padding: 4px;
+    position: relative;
+    z-index: 1;
+}
+
 .issue-form input, .issue-form textarea{
     margin-bottom: 1%;
     padding: 0.5%;
+}
+
+.issue-btn {
+    position: relative;
+    z-index: 1;
 }
 
 /* modal classes */
@@ -386,4 +390,58 @@ li {
 
 footer {
     padding: 0px 0px 5px 10px;
+}
+
+/* mobile responsiveness */
+@media screen and (max-width: 975px) {
+    header a {
+       flex: 0 30%;
+    }
+
+    .logo-img {
+        width: 30%;
+        height: 30%;
+    }
+
+    h1, h2, h3 {    
+        text-align: center;
+    }
+
+    .property-card {
+        flex-direction: column;
+        margin-top: 10%;
+    }
+
+    .property-card img {
+        width: 30%;
+        height: 30%;
+    }
+
+    .property-btn {
+        width: 100%;
+        margin-bottom: 4%;
+    }
+
+    p {
+        text-align: center;
+    }
+
+    .tenant-unit {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .unit-btn {
+        width: 100%;
+        padding: 4%;
+        text-align: center;
+    }
+
+    .issue-box {
+        flex-direction: column;
+    }
+
+    .login {
+        margin: 0 auto;
+    }
 }

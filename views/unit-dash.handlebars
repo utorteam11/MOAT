@@ -1,7 +1,7 @@
 {{#if tenant}}
 <div>
     <h2>Welcome to your tenant portal, {{tenant.first_name}}</h2>
-    <div>
+    <div class="tenant-unit">
         <p>Your Units:</p>
         <a href="/dashboard/units/{{tenant.unit_id}}" class="unit-btn tenant-btn" type="click">{{tenant.unit.property.nickname}}, Unit {{tenant.unit.unit_number}}</a>
     </div>
