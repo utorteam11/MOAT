@@ -46,3 +46,4 @@ app.use(routes);
 sequelize.sync({ force: false }).then(() => {
     app.listen(PORT, () => console.log(`Server is now listening on ${PORT}`));
 });
+//rebuild heroku
